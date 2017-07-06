@@ -1,8 +1,13 @@
 -- DELETE DATABASE  =   =   =   =   =   =   =   =   =   =   =
-DROP TABLE IF EXISTS mechanic_game_link;
-DROP TABLE IF EXISTS game;
-DROP TABLE IF EXISTS mechanic;
-DROP TABLE IF EXISTS genre;
+DROP TABLE IF EXISTS public.mechanic_game_link CASCADE;
+DROP TABLE IF EXISTS public.game CASCADE;
+DROP TABLE IF EXISTS public.mechanic CASCADE;
+DROP TABLE IF EXISTS public.genre CASCADE;
+
+DROP SEQUENCE IF EXISTS game_pk CASCADE;
+DROP SEQUENCE IF EXISTS mechanic_pk CASCADE;
+DROP SEQUENCE IF EXISTS genre_pk CASCADE;
+
 
 -- CREATE DATABASE  =   =   =   =   =   =   =   =   =   =   =
 
@@ -72,3 +77,18 @@ CREATE TABLE public.mechanic_game_link
     FOREIGN KEY (game_id) REFERENCES public.game (id),
     FOREIGN KEY (mechanic_id) REFERENCES public.mechanic (id)
 );
+
+-- TEST DATA
+
+-- Genres
+INSERT INTO public.genre VALUES (1,'Strategy', 'Games that require Strategic Thought');
+INSERT INTO public.genre VALUES (2,'Card','Play with overpriced cardboard');
+
+--  Games
+
+INSERT INTO public.game VALUES (1,999,'Magic: the Gathering', 'A card game of spells and creatures',20,60,3,5,true,'','','',1993,2);
+INSERT INTO public.game VALUES (2,998,'Chess','The Game of Kings',10,60,2,2,false,'','','',0,1);
+INSERT INTO public.game VALUES (3,997,'Ticket to Ride','Make trains bub',40,60,3,5,true,'','','',2003,1);
+
+
+
