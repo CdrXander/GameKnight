@@ -18,7 +18,7 @@ function createGame(req,res) {
 function getOwnedGames(req,res) {
     var db = app.get('db');
 
-    db.game.find({owned:true}, function(err, response) {
+    db.game.find({owned:true}).then((err, response) => {
         utilityNode.handleReturn("gameNode.getOwnedGame",err,response,res);
     })
 }
