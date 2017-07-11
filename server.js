@@ -40,6 +40,7 @@ massive({
     //ENDPOINTS =   =   =   =   =   =   =   =   =   =
     //Logistics
     app.get('/api/game/list/owned', gameNode.getOwnedGames);
+    app.get('/api/game/list/unowned', gameNode.getUnownedGames);
 
 
     //Spin up the drives

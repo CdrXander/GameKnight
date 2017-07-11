@@ -17,13 +17,15 @@ function createGame(req,res) {
 
 function getOwnedGames(req,res) {
     var db = app.get('db');
-
     db.game.find({owned:true}).then((err, response) => {
         utilityNode.handleReturn("gameNode.getOwnedGame",err,response,res);
     })
 }
 
 function getUnownedGames(req, res) {
-    console.log("NOT READY");
+    const db = app.get('db');
+    db.game.find({owned:false}).then((err, response) => {
+        utilityNode.handleReturn('gameNode.getUnownedGames',err,response,res);
+    })
 }
 
