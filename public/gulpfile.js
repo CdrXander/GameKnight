@@ -12,7 +12,7 @@ var CacheBuster = require('gulp-cachebust');
 var cachebust = new CacheBuster();
 
 gulp.task('build-css', function() {
-    gulp.src('./css/*')
+    gulp.src('./scss/*')
         .pipe(sourcemaps.init())			//Remember original state
         .pipe(print())
         .pipe(sass())						//Pass to SASS
@@ -50,7 +50,7 @@ gulp.task('watch', function() {
     return gulp.watch([
         './index.html',
         './views/*.html',
-        './css/*.*css',
+        './scss/*.*css',
         './js/**/*.js',
         './js/*.js',
         './directives/*.js',
