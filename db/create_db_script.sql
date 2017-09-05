@@ -153,3 +153,18 @@ CREATE TABLE public.game_night
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE public.invite
+(
+	game_night_id integer,
+	user_id integer,
+	attending boolean,
+	host boolean,
+	PRIMARY KEY (game_night_id, user_id),
+	FOREIGN KEY (game_night_id) REFERENCES public.game_night(id),
+	FOREIGN KEY (user_id) REFERENCES public.gk_user(id)
+);
+
+-- Create the dummy user for the "Wanted" catalog, and the wanted Catalog
+
+INSERT INTO public.gk_user VALUES (7,0,'The Game Knight', '');
+INSERT INTO public.gk_catalog VALUES(1,'Wanted Games', 7);
