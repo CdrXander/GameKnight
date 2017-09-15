@@ -39,14 +39,20 @@ massive({
 
     //ENDPOINTS =   =   =   =   =   =   =   =   =   =
     //Logistics
-    app.get('/api/game/list/owned', gameNode.getOwnedGames);
+
+    //Game Methods
+    app.get('/api/game/list/owned/all', gameNode.getAllOwnedGames);
+    app.get('/api/game/list/owned/:uid', gameNode.getOwnedGamesForUser);
     app.get('/api/game/list/unowned', gameNode.getUnownedGames);
+    app.get('/api/game/:gameid',gameNode.getGameByID);
+    app.post('/api/game', gameNode.addGameToDatabase);
+    app.post('/api/game/update',gameNode.updateGame);
 
-
+    
     //Spin up the drives
     app.listen(port, function() {
         console.log("Started server on port", port);
     });
 
-})
+});
 

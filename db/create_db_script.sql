@@ -1,7 +1,7 @@
 -- DROP TABLES
 DROP TABLE IF EXISTS invite;
 DROP TABLE IF EXISTS game_night;
-DROP TABLE IF EXISTS game_gk_catalog_link;
+DROP TABLE IF EXISTS game_catalog_link;
 DROP TABLE IF EXISTS gk_catalog;
 DROP TABLE IF EXISTS game_genre_link;
 DROP TABLE IF EXISTS game_mechanic_link;
@@ -136,13 +136,13 @@ CREATE TABLE public.gk_catalog
 	FOREIGN KEY (owner_id) REFERENCES public.gk_user(id)
 );
 
-CREATE TABLE public.game_gk_catalog_link
+CREATE TABLE public.game_catalog_link
 (
     game_id integer,
-    gk_catalog_id integer,
-    PRIMARY KEY (game_id, gk_catalog_id),
+    catalog_id integer,
+    PRIMARY KEY (game_id, catalog_id),
     FOREIGN KEY (game_id) REFERENCES public.game (id),
-    FOREIGN KEY (gk_catalog_id) REFERENCES public.gk_catalog (id)
+    FOREIGN KEY (catalog_id) REFERENCES public.gk_catalog (id)
 );
 
 CREATE TABLE public.game_night
@@ -167,4 +167,4 @@ CREATE TABLE public.invite
 -- Create the dummy user for the "Wanted" catalog, and the wanted Catalog
 
 INSERT INTO public.gk_user VALUES (7,0,'The Game Knight', '');
-INSERT INTO public.gk_catalog VALUES(1,'Wanted Games', 7);
+INSERT INTO public.gk_catalog VALUES(1,'Wanted Games','', 7);

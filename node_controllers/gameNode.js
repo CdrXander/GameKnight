@@ -7,8 +7,12 @@ const utilityNode = require('./utilityNode.js');
 
 module.exports = {
     createGame:createGame,
-    getOwnedGames:getOwnedGames,
-    getUnownedGames:getUnownedGames
+    getAllOwnedGames:getAllOwnedGames,
+    getOwnedGamesForUser:getOwnedGamesForUser,
+    getUnownedGames:getUnownedGames,
+    getGameByID:getGameByID,
+    addGameToDatabase:addGameToDatabase,
+    updateGame:updateGame
 };
 
 function createGame(req,res) {
@@ -32,13 +36,19 @@ function createGame(req,res) {
     db.game.save(newGame).then((err,game) => {
         utilityNode.handleReturn('gameNode.createGame',err,game,res);
     })
-
 }
 
-function getOwnedGames(req,res) {
+function getAllOwnedGames(req,res) {
     const db = app.get('db');
-    db.game.find({owned:true}).then((err, response) => {
-        utilityNode.handleReturn("gameNode.getOwnedGame",err,response,res);
+    db.select_all_owned_games().then((err, response) => {
+        utilityNode.handleReturn("gameNode.getAllOwnedGames",err,response,res);
+    })
+}
+
+function getOwnedGamesForUser(req,res) {
+    const db = app.get('db');
+    db.select_all_owned_games_for_user(req.params.uid).then((err,response) => {
+        utilityNode.handleReturn("gameNode.getOwnedGamesForUser",err,response,res);
     })
 }
 
@@ -49,3 +59,23 @@ function getUnownedGames(req, res) {
     })
 }
 
+function getGameByID(req, res) {
+    const db = app.get('db');
+    db.game.find({id:req.params.gameid}).then((err,response) => {
+        utilityNode.handleReturn('gameNode.getGameByID',err,response,res);
+    })
+}
+
+function addGameToDatabase(req,res) {
+    const db = app.get('db');
+    db.game.save(req.body.game).then((err,response) => {
+        utilityNode.handleReturn('gameNode.addGameToDatabase',err,response,res);
+    })
+}
+
+function updateGame(req, res) {
+    const db = app.get('db');
+    db.game.update(req.body.game).then((err,response) => {
+        utilityNode.handleReturn('gameNode.updateGame',err,response,res);
+    })
+}

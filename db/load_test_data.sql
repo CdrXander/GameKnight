@@ -12,4 +12,9 @@ INSERT INTO public.game_mechanic_link VALUES (2,3);
 
 --  Create a test user
 
+INSERT INTO public.gk_user VALUES (1,17,'James Raynor', '');
+INSERT INTO public.gk_catalog VALUES(2,'James Raynors Games','', 1);
+INSERT INTO public.game_catalog_link VALUES (1,2);
+INSERT INTO public.game_catalog_link VALUES (3,2);
+INSERT INTO public.game_catalog_link VALUES (2,1);
 
