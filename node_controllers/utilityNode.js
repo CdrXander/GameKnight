@@ -3,16 +3,16 @@
  */
 
 module.exports = {
-    handleReturn:handleReturn
+    handleGenericReturn:handleGenericReturn
 };
 
 
-function handleReturn(method_name, err, result, res) {
+function handleGenericReturn(method_name, result, httpResponse) {
     if(!err) {
-        res.status(200).send(result);
+        httpResponse.status(200).send(result);
     } else {
         console.log("Error in " + method_name);
         console.log(err);
-        res.status(500).send(err);
+        httpResponse.status(500).send(err);
     }
 }
