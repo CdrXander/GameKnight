@@ -48,6 +48,10 @@ massive({
     app.post('/api/game', gameNode.addGameToDatabase);
     app.post('/api/game/update',gameNode.updateGame);
 
+
+    app.post('/api/game/own/:uid/:gid', gameNode.addGameToUserList);
+    app.post('/api/game/want/:uid/:gid', gameNode.addGameToWantList);
+
     
     //Spin up the drives
     app.listen(port, function() {

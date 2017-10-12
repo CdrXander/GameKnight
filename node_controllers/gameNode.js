@@ -10,7 +10,9 @@ module.exports = {
     getOwnedGamesForUser:getOwnedGamesForUser,
     getUnownedGames:getUnownedGames,
     getGameByID:getGameByID,
-    updateGame:updateGame
+    updateGame:updateGame,
+    addGameToUserList:addGameToUserList,
+    addGameToWantList:addGameToWantList
 };
 
 function addGameToDatabase(req,res) {
@@ -69,4 +71,12 @@ function updateGame(req, res) {
     db.game.update(req.body.game).then(response => {
         res.status(200).send(response);
     })
+}
+
+function addGameToUserList(req, res) {
+    res.status(200).send("TO BE IMPLEMENTED");
+}
+
+function addGameToWantList(req, res) {
+    res.status(200).send("TO BE IMPLEMENTED");
 }
